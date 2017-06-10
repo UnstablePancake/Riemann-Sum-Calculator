@@ -9,10 +9,11 @@ public class Window {
 
     public static JTextField txtAnswer;
     public static JTextArea sheet;
+    private static boolean sheetActive = false;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Riemann Sum Calculator");
-        frame.setSize(350, 160);
+        frame.setSize(355, 165);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -67,6 +68,17 @@ public class Window {
         JButton btnCalc = new JButton("Calculate");
         btnCalc.setBounds(210, 10, 120, 20);
         frame.add(btnCalc);
+
+        sheet = new JTextArea();
+        sheet.setEditable(false);
+        sheet.setLineWrap(true);
+        frame.add(sheet);
+
+        JScrollPane scrollPane = new JScrollPane(sheet);
+        scrollPane.setBounds(0, 150, 350, 375);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        frame.add(scrollPane);
 
         frame.setVisible(true);
 
@@ -133,40 +145,19 @@ public class Window {
         });
 
         JButton btnMore = new JButton("...");
-        btnMore.setBounds(160, 10, 20, 20);
+        btnMore.setBounds(170, 100, 20, 20);
         frame.add(btnMore);
         btnMore.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                createSpreadsheet();
-            }
-        });
-    }
-
-    public static void createSpreadsheet() {
-        EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                JFrame frame = new JFrame("Spreadsheet");
-                frame.setSize(300, 400);
-                frame.setResizable(false);
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setLayout(null);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-
-                sheet = new JTextArea();
-                sheet.setEditable(false);
-                sheet.setLineWrap(true);
-                frame.add(sheet);
-
-                JScrollPane scrollPane = new JScrollPane(sheet);
-                scrollPane.setBounds(0, 0, 295, 375);
-                scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-                scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                frame.add(scrollPane);
+                if (!sheetActive) {
+                    frame.setSize(355, 550);
+                    sheetActive = true;
+                } else {
+                    frame.setSize(355, 165);
+                    sheetActive = false;
+                }
             }
         });
     }

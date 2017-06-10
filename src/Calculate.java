@@ -22,9 +22,8 @@ public class Calculate {
     public void calcLeft() {
         double sum = 0;
 
-        for (double i = minInt; i < maxInt; i += getIncrement()) {
-            sum += getIncrement() * calcEquation(i);
-
+        for (double i = minInt; roundNumber(i) < maxInt; i += getIncrement()) {
+            sum += roundNumber(getIncrement() * calcEquation(i));
             addTextToSpreadsheet(i, calcEquation(i));
         }
         setAnswer(sum);
@@ -33,10 +32,10 @@ public class Calculate {
     public void calcRight() {
         double sum = 0;
 
-        for (double i = minInt + getIncrement(); i <= maxInt; i+= getIncrement()) {
+        for (double i = minInt + getIncrement(); roundNumber(i) <= maxInt; i+= getIncrement()) {
             sum += getIncrement() * calcEquation(i);
 
-            addTextToSpreadsheet(i, calcEquation(i));
+            addTextToSpreadsheet(roundNumber(i), calcEquation(i));
         }
         setAnswer(sum);
     }
@@ -44,10 +43,10 @@ public class Calculate {
     public void calcMiddle() {
         double sum = 0;
 
-        for (double i = (minInt + getIncrement()) / 2.0; i < maxInt; i+= getIncrement()) {
+        for (double i = (minInt + getIncrement()) / 2.0; roundNumber(i) < maxInt; i+= getIncrement()) {
             sum += getIncrement() * calcEquation(i);
 
-            addTextToSpreadsheet(i, calcEquation(i));
+            addTextToSpreadsheet(roundNumber(i), calcEquation(i));
         }
         setAnswer(sum);
     }
@@ -57,8 +56,7 @@ public class Calculate {
     }
 
     private double roundNumber(double number) {
-        double intNumber = (int)(number * 1000);
-        return intNumber / 1000;
+        return Math.round(number * 1000.0) / 1000.0;
     }
 
     public void addTextToSpreadsheet(double x, double fx) {
@@ -70,6 +68,6 @@ public class Calculate {
     }
 
     public void resetSpreadsheet() {
-        spreadsheet = "\tx\tf(x)";
+        spreadsheet = "\tx\tf(x)\n\t----\t----";
     }
 }
