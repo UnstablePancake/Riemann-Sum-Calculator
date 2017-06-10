@@ -23,7 +23,7 @@ public class Calculate {
         double sum = 0;
 
         for (double i = minInt; roundNumber(i) < maxInt; i += getIncrement()) {
-            sum += roundNumber(getIncrement() * calcEquation(i));
+            sum += getIncrement() * calcEquation(i);
             addTextToSpreadsheet(i, calcEquation(i));
         }
         setAnswer(sum);
@@ -35,7 +35,7 @@ public class Calculate {
         for (double i = minInt + getIncrement(); roundNumber(i) <= maxInt; i+= getIncrement()) {
             sum += getIncrement() * calcEquation(i);
 
-            addTextToSpreadsheet(roundNumber(i), calcEquation(i));
+            addTextToSpreadsheet(i, calcEquation(i));
         }
         setAnswer(sum);
     }
@@ -46,7 +46,7 @@ public class Calculate {
         for (double i = (minInt + getIncrement()) / 2.0; roundNumber(i) < maxInt; i+= getIncrement()) {
             sum += getIncrement() * calcEquation(i);
 
-            addTextToSpreadsheet(roundNumber(i), calcEquation(i));
+            addTextToSpreadsheet(i, calcEquation(i));
         }
         setAnswer(sum);
     }
