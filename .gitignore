@@ -4,3 +4,4 @@
 /AreaCalculator.iml
 /out/
 /src/META-INF/
+!/out/artifacts/AreaCalculator_jar/AreaCalculator.jar
