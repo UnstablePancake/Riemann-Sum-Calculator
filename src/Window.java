@@ -1,7 +1,4 @@
-import org.apache.commons.lang3.StringUtils;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -102,34 +99,31 @@ public class Window {
                 }
 
                 String min = txtMinInterval.getText();
-                if (StringUtils.isNumeric(min)
-                        || StringUtils.isNumeric(min.substring(1))) {
+                try {
                     minInt = Double.parseDouble(min);
-                } else {
+                } catch (NumberFormatException ex) {
                     txtAnswer.setText("Invalid lower limit");
                     return;
                 }
 
                 String max = txtMaxInterval.getText();
-                if (StringUtils.isNumeric(max)
-                        || StringUtils.isNumeric(max.substring(1))) {
+                try {
                     maxInt = Double.parseDouble(max);
-                } else {
+                } catch (NumberFormatException ex) {
                     txtAnswer.setText("Invalid upper limit");
                     return;
                 }
 
                 String sub = txtSubinterval.getText();
-                if (StringUtils.isNumeric(sub)) {
+                try {
                     subint = Double.parseDouble(sub);
-                } else {
+                } catch (NumberFormatException ex) {
                     txtAnswer.setText("Invalid subinterval");
                     return;
                 }
 
                 Calculate calc = new Calculate(minInt, maxInt, subint);
                 calc.resetSpreadsheet();
-
                 int side = cmbSide.getSelectedIndex();
                 switch (side) {
                     case 1: calc.calcLeft();
