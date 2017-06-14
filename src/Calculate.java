@@ -1,3 +1,6 @@
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+
 public class Calculate {
 
     private double minInt;
@@ -16,7 +19,8 @@ public class Calculate {
     }
 
     private double calcEquation(double x) {
-        return Math.pow(x, 2);
+        Expression eb = new ExpressionBuilder(Window.txtEquation.getText()).variable("x").build().setVariable("x", x);
+        return eb.evaluate();
     }
 
     public void calcLeft() {

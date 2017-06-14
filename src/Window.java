@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 public class Window {
 
+    public static JTextField txtEquation;
     public static JTextField txtAnswer;
     public static JTextArea sheet;
     private static boolean sheetActive = false;
@@ -16,9 +17,13 @@ public class Window {
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
 
-        JLabel lblEquation = new JLabel("Equation: y = x ^ 2");
-        lblEquation.setBounds(10, 10, 110, 20);
+        JLabel lblEquation = new JLabel("Equation");
+        lblEquation.setBounds(10, 10, 80, 20);
         frame.add(lblEquation);
+
+        txtEquation = new JTextField();
+        txtEquation.setBounds(100, 10, 80, 20);
+        frame.add(txtEquation);
 
         JLabel lblMinInterval = new JLabel("Lower limit");
         lblMinInterval.setBounds(10, 40, 80, 20);
